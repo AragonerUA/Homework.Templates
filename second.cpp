@@ -18,14 +18,14 @@ Type GetMax(Type* a, int size){
 
 class ArrayException {
 private:
-    std::string m_error;
+    std::string exception_error;
 public:
     explicit ArrayException(std::string error)
-            : m_error(std::move(error))
+            : exception_error(std::move(error))
     {}
 
-    const char* getError() {
-        return m_error.c_str();
+    const char* takeErr() {
+        return exception_error.c_str();
     }
 };
 
@@ -33,43 +33,43 @@ public:
 template<class T>
 class Array {
 private:
-    int m_length;
-    T *m_data;
+    int length;
+    T *data;
 public:
     Array() {
-        m_length = 0;
-        m_data = nullptr;
+        length = 0;
+        data = nullptr;
     }
 
-    explicit Array(int length) {
-        m_data = new T[length];
-        m_length = length;
+    explicit Array(int lengths) {
+        data = new T[length];
+        length = lengths;
     }
 
     ~Array() {
-        delete[] m_data;
+        delete[] data;
     }
 
     void Erase() {
-        delete[] m_data;
-        m_data = nullptr;
-        m_length = 0;
+        delete[] data;
+        data = nullptr;
+        length = 0;
     }
 
     T& operator[](int index) {
-        if (index < 0 || index >= m_length) {
+        if (index < 0 || index >= length) {
             throw ArrayException("Invalid Index");
         }
-        assert(index >= 0 && index < m_length);
-        return m_data[index];
+        assert(index >= 0 && index < length);
+        return data[index];
     }
 
-    int getLength();
+    int takeLen();
 
 };
 
 template <class T>
-int Array<T>::getLength() {
-    return m_length;
+int Array<T>::takeLen() {
+    return length;
 }
 }
