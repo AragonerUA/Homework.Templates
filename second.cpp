@@ -6,7 +6,7 @@
 namespace tasks {
 template<class Type>
 Type GetMax(Type* a, int size){
-    Type maximum = LLONG_MIN;
+    Type maximum = a[0];
     for (int i = 0; i < size; i++) {
         if (a[i] > maximum) {
             maximum = a[i];
@@ -30,22 +30,28 @@ public:
 };
 
 
-template<class T>
+template<int length, class T>
 class Array {
 private:
-    int length;
     T *data;
 public:
     Array() {
-        length = 0;
-        data = nullptr;
-    }
-
-    explicit Array(int lengths) {
         data = new T[length];
-        length = lengths;
     }
 
+    void fill_arr() {
+        for (int i = 0; i < length; i++) {
+            data[i] = T(rand() % 100 + 0.63);
+        }
+    }
+
+    void print() {
+        std::cout << "Array: " << std::endl;
+        for (int i = length-1; i >= 0; i--) {
+            std::cout << data[i] << " ";
+        }
+        std::cout << std::endl;
+    }
     ~Array() {
         delete[] data;
     }
@@ -53,7 +59,6 @@ public:
     void Erase() {
         delete[] data;
         data = nullptr;
-        length = 0;
     }
 
     T& operator[](int index) {
@@ -64,12 +69,10 @@ public:
         return data[index];
     }
 
-    int takeLen();
+    int takeLen() {
+        return length;
+    };
 
 };
 
-template <class T>
-int Array<T>::takeLen() {
-    return length;
-}
 }
