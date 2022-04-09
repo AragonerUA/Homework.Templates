@@ -4,18 +4,18 @@
 #include "second.cpp"
 //#include <stdio>
 //
-#define Na 5
-#define Nb 3
-#define Nk 4
+#define first_size 5
+#define second_size 3
+#define third_size 4
 
 int main() {
-    int a[Na] = {10, 20, -3, 60, 1};
-    long long int b[Nb] = {10000000000000, 2414141414141412421, 323};
-    double k[Nk] = {4.3, 2.1, 8.9, 8.8};
+    int a[first_size] = {10, 20, -3, 60, 1};
+    long long int b[second_size] = {10000000000000, 2414141414141412421, 323};
+    double k[third_size] = {4.3, 2.1, 8.9, 8.8};
 
-    std::cout << "Maximum: " << tasks::GetMax(a, Na) << std::endl;
-    std::cout << "Maximum: " << tasks::GetMax(b, Nb) << std::endl;
-    std::cout << "Maximum: " << tasks::GetMax(k, Nk) << std::endl;
+    std::cout << "Maximum: " << tasks::GetMax(a, first_size) << std::endl;
+    std::cout << "Maximum: " << tasks::GetMax(b, second_size) << std::endl;
+    std::cout << "Maximum: " << tasks::GetMax(k, third_size) << std::endl;
 
     std::cout << "-----------------------------------------\n";
 
@@ -25,23 +25,23 @@ int main() {
     tasks::Array<int> intArray(intleng);
     tasks::Array<double> doubleArray(doubleng);
 
-    for (int i = 0; i < intArray.getLength(); i++) {
+    for (int i = 0; i < intArray.takeLen(); i++) {
         intArray[i] = rand() % 100;
     }
 
-    for (int i = 0; i < doubleArray.getLength(); i++) {
+    for (int i = 0; i < doubleArray.takeLen(); i++) {
         doubleArray[i] = rand() % 100 + 0.57;
     }
 
     std::cout << "First Array(Int): \n";
-    for (int i = intArray.getLength()-1; i >= 0; i--) {
+    for (int i = intArray.takeLen()-1; i >= 0; i--) {
         std::cout << intArray[i] << " ";
     }
 
     std::cout << std::endl;
 
     std::cout << "Second Array(Double): \n";
-    for (int i = doubleArray.getLength()-1; i >= 0; i--) {
+    for (int i = doubleArray.takeLen()-1; i >= 0; i--) {
         std::cout << doubleArray[i] << " ";
     }
     std::cout << std::endl;
@@ -50,7 +50,7 @@ int main() {
         intArray[21] = 345;
     }
     catch (tasks::ArrayException &exception) {
-        std::cerr << "An array exception occurred (" << exception.getError() << ")\n";
+        std::cerr << "An array exception occurred (" << exception.takeErr() << ")\n";
     }
 
     return 0;
