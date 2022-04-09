@@ -20,11 +20,18 @@ int main() {
     std::cout << "-----------------------------------------\n";
 
     //Array
-    int intleng = 15;
-    int doubleng = 8;
-    tasks::Array<int> intArray(intleng);
-    tasks::Array<double> doubleArray(doubleng);
+    const int intleng = 15;
+    const int doubleng = 8;
+    tasks::Array<intleng, int> intArray;
+    tasks::Array<doubleng, double> doubleArray;
 
+//    intArray.fill_arr();
+//    doubleArray.fill_arr();
+//
+//    intArray.print();
+//    doubleArray.print();
+
+    //-----------------------------------------------
     for (int i = 0; i < intArray.takeLen(); i++) {
         intArray[i] = rand() % 100;
     }
@@ -32,6 +39,7 @@ int main() {
     for (int i = 0; i < doubleArray.takeLen(); i++) {
         doubleArray[i] = rand() % 100 + 0.57;
     }
+
 
     std::cout << "First Array(Int): \n";
     for (int i = intArray.takeLen()-1; i >= 0; i--) {
@@ -45,6 +53,7 @@ int main() {
         std::cout << doubleArray[i] << " ";
     }
     std::cout << std::endl;
+    //------------------------------------------------------
 
     try {
         intArray[21] = 345;
